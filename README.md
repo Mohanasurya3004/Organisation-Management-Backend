@@ -2,37 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Organization Management Backend</title>
-    <style>
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            line-height: 1.6;
-            margin: 40px;
-            background-color: #ffffff;
-            color: #222;
-        }
-        h1, h2, h3 {
-            color: #0a3d62;
-        }
-        code {
-            background: #f4f4f4;
-            padding: 4px 6px;
-            border-radius: 4px;
-            font-family: Consolas, monospace;
-        }
-        pre {
-            background: #f4f4f4;
-            padding: 12px;
-            border-radius: 6px;
-            overflow-x: auto;
-        }
-        ul {
-            margin-left: 20px;
-        }
-        hr {
-            margin: 30px 0;
-        }
-    </style>
 </head>
 <body>
 
@@ -266,7 +235,29 @@ or database-per-tenant architecture could be considered.
 </ul>
 
 <hr>
-
-
+<p>
+<h2>How Could This Be Improved for Large-Scale Systems?</h2>
+<h3>For larger or enterprise-level systems, alternative designs could be considered:</h3>
+<ul>
+    <li>
+        Shared Collection Model: Store all tenant data in shared collections with an indexed org_id. This reduces the             number of collections and improves scalability.
+    </li>
+    <li>
+         Database-Per-Tenant Architecture:
+        Each organization gets its own database for maximum isolation, at the cost of increased operational complexity             and infrastructure overhead.
+     </li>
+    <li>
+        Async & Background Jobs:
+Use async MongoDB drivers and background workers for heavy operations like data migration.
+    </li>
+    <li>
+        Role-Based Access Control (RBAC):
+Introduce roles and permissions for finer-grained access control.
+    </li>
+    <li>
+        Caching Layer:
+Add Redis or similar caching for frequently accessed metadata.
+    </li>
+</ul>
 </body>
 </html>
